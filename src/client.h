@@ -11,6 +11,9 @@
 #include <cstdint>
 #include <mutex>
 #include <vector>
+#ifdef _MSC_VER
+    typedef unsigned int uint;
+#endif
 
 class Clients;
 class Node;
