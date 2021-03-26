@@ -11,9 +11,6 @@
 #include <cstdint>
 #include <mutex>
 #include <vector>
-#ifdef _MSC_VER
-    typedef unsigned int uint;
-#endif
 
 class Clients;
 class Node;
@@ -39,7 +36,7 @@ class Client : public std::enable_shared_from_this<Client> {
     std::vector<uint8_t> writing;
     std::vector<uint8_t> pending;
     std::mutex publish_mutex;
-    const uint MAX_PENDING_SIZE = 1073741824;  // 1GB
+    const size_t MAX_PENDING_SIZE = 1073741824;  // 1GB
 
     void handle_read(const boost::system::error_code& ec, std::size_t length);
     void handle_write(const boost::system::error_code& ec);
