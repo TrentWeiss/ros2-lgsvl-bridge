@@ -23,8 +23,11 @@ add_executable(lgsvl_bridge
   src/server.cc
   src/types.cc
 )
-
-target_link_libraries(lgsvl_bridge ${Boost_LIBRARIES} ${CMAKE_DL_LIBS})
+if(UNIX)
+  find_package(Threads REQUIRED)
+  target_link_libraries(lgsvl_bridge Threads::Threads)
+endif()
+target_link_libraries(lgsvl_bridge Boost::system ${CMAKE_DL_LIBS})
 
 ament_target_dependencies(lgsvl_bridge rcutils rcl)
 
