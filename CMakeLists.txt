@@ -29,6 +29,10 @@ if(UNIX)
 endif()
 target_link_libraries(lgsvl_bridge Boost::system ${CMAKE_DL_LIBS})
 
+if(WIN32)
+  target_compile_definitions(lgsvl_bridge PRIVATE "WIN32_LEAN_AND_MEAN")
+endif()
+
 ament_target_dependencies(lgsvl_bridge rcutils rcl)
 
 install(TARGETS lgsvl_bridge DESTINATION bin)
