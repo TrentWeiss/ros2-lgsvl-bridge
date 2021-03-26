@@ -9,7 +9,11 @@
 
 #include <sstream>
 #include <rcutils/logging.h>
-
+#ifdef _MSC_VER
+  #ifdef ERROR
+    #undef ERROR
+  #endif
+#endif
 #define LOG(x) \
   do { \
       std::stringstream ss; \

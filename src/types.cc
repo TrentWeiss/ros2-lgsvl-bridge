@@ -6,7 +6,6 @@
  */
 
 #include "types.h"
-#include "logging.h"
 
 #include <cassert>
 #include <cstring>
@@ -17,12 +16,13 @@
 #include <rosidl_typesupport_introspection_c/field_types.h>
 #include <rosidl_typesupport_introspection_c/message_introspection.h>
 
-#ifndef _WIN32
-#  include <dlfcn.h>
-#else
-#  define WIN32_LEAN_AND_MEAN
+#ifdef _MSC_VER
 #  include <windows.h>
+#else
+#  include <dlfcn.h>
 #endif
+
+#include "logging.h"
 
 MessageTypes::MessageTypes()
 {
