@@ -36,7 +36,7 @@ class Client : public std::enable_shared_from_this<Client> {
     std::vector<uint8_t> writing;
     std::vector<uint8_t> pending;
     std::mutex publish_mutex;
-    const uint MAX_PENDING_SIZE = 1073741824;  // 1GB
+    const uint32_t MAX_PENDING_SIZE; //set to 1073741824 (1GB) in constructor.
 
     void handle_read(const boost::system::error_code& ec, std::size_t length);
     void handle_write(const boost::system::error_code& ec);

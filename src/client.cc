@@ -23,7 +23,7 @@ enum {
 };
 
 Client::Client(Node& node, Clients& clients, boost::asio::ip::tcp::socket s)
-    : node(node), clients(clients), socket(std::move(s)) {
+    : node(node), clients(clients), socket(std::move(s)), MAX_PENDING_SIZE(1073741824) {
     auto endpoint = socket.remote_endpoint();
     LOG("Client [" << endpoint.address() << ":" << endpoint.port()
                    << "] connected");

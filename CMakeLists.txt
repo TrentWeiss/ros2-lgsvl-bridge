@@ -10,6 +10,9 @@ find_package(ament_cmake_ros REQUIRED)
 find_package(Boost REQUIRED system)
 find_package(rcutils REQUIRED)
 find_package(rcl REQUIRED)
+if(WIN32)
+  add_compile_definitions("NOGDI")
+endif()
 
 ament_auto_find_build_dependencies()
 
@@ -29,5 +32,6 @@ target_link_libraries(lgsvl_bridge ${Boost_LIBRARIES} ${CMAKE_DL_LIBS})
 ament_target_dependencies(lgsvl_bridge rcutils rcl)
 
 install(TARGETS lgsvl_bridge DESTINATION bin)
+install(TARGETS lgsvl_bridge DESTINATION lib/lgsvl_bridge)
 
 ament_auto_package()
